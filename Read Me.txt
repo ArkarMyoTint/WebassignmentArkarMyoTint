@@ -1,0 +1,16 @@
+@READ ME
+
+
+
+-Attach database mdf and ldf from 'Database SQL' folder to your SQL database
+-open web.config 
+-Change connectionString to your local connection in web.config
+-Clean and build the project
+-Then run the index page
+
+software versions
+Visual Studio 2017
+SQL Database 2014
+
+
+----Run the project------
