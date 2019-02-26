@@ -1,0 +1,471 @@
+﻿@using Microsoft.AspNet.Identity
+<!DOCTYPE html>
+<html>
+<head>
+    @*Template*@
+    <title>StarLight Tickets</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="~/Content/layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
+    @*Template*@
+
+
+
+    @*mapbox*@
+    @*<script src='https://api.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.css' rel='stylesheet' />*@
+
+    @*<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />*@
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+    @*mapbox*@
+
+
+
+
+</head>
+
+@* <body onload="loadMap()"*@
+<body id="top">
+
+    @*template*@
+        <div class="wrapper row0">
+            <div id="topbar" class="hoc clear">
+                <!-- ################################################################################################ -->
+                <div class="fl_left">
+                    <ul>
+                        <li>@Html.ActionLink("StarLight Tickets", "Index", "Home", null, null) <i class="fa fa-lg fa-home"></i></li>
+                        <li><i class="fa fa-phone"></i> +95 9428582021</li>
+                        <li><i class="fa fa-envelope-o"></i> starlight@gmail.com</li>
+                    </ul>
+                </div>
+                <div class="fl_right">
+                    <ul>
+
+                        @*<li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                            <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>*@
+                        @if (Request.IsAuthenticated)
+                        {
+                            using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                            {
+                                @Html.AntiForgeryToken()
+
+                                @*<ul class="nav navbar-nav navbar-right">*@
+                                <li>
+                                    @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                                </li>
+                                    <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+                                    @*</ul>*@
+                            }
+                        }
+                        else
+                        {
+                            @*<ul class="nav navbar-nav navbar-right">*@
+                            <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                                <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                                @*</ul>*@
+                        }
+
+
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Top Background Image Wrapper -->
+        <div class="bgded overlay" style="background-image:url('../../Content/images/Travel-Wallpaper-008.jpg');">
+
+            <div class="wrapper row1">
+                <header id="header" class="hoc clear">
+
+                    <div id="logo" class="fl_left">
+                        <h1>@Html.ActionLink("StarLight Tickets", "Index", "Home", null, null)</h1>
+                    </div>
+                    <nav id="mainav" class="fl_right">
+                        <ul class="clear">
+                            <li class="active">@Html.ActionLink("Home", "Index", "Home", null, null)</li>
+                            <li>
+                                <a class="drop" href="#">Category</a>
+                                <ul>
+                                    <li>@Html.ActionLink("Cinema", "Index", "Cinemas", null, null)</li>
+                                    <li>@Html.ActionLink("Theatre", "Index", "Theatres", null, null)</li>
+                                    <li>@Html.ActionLink("Sport", "Index", "Sports", null, null)</li>
+                                    <li>@Html.ActionLink("Watch Trailers", "Index", "Trailer", null, null)</li>
+
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="drop" href="#">Help Center</a>
+                                <ul>
+                                    <li>@Html.ActionLink("View Map!", "Map", "Map", null, null)</li>
+                                    <li>
+                                        @Html.ActionLink("Service", "Index", "HelpCenter", null, null)
+                                        @*<ul>
+                                                <li><a href="#">Feed Back</a></li>
+                                                <li><a href="#">Problem Report</a></li>
+                                                <li><a href="#">Support Us</a></li>
+                                            </ul>*@
+                                    </li>
+                                    <li>@Html.ActionLink("About Us", "Index", "AboutUs", null, null)</li>
+                                </ul>
+                            </li>
+                            @*<li><a href="#">Link Text</a></li>
+                                <li><a href="#">Link Text</a></li>*@
+                        </ul>
+                    </nav>
+                    <!-- ################################################################################################ -->
+                </header>
+            </div>
+        </div>
+        @*template*@
+
+        <div class="nospace group" style="background-image:url('../../Content/images/map.jpg');">
+            <main class="hoc container clear">
+                @*Mapbox*@
+                <style>
+                        #marker {
+                            background-image: url(../../Content/images/imagefiles_location_map_pin_red10.png);
+                            background-size: cover;
+                            width: 50px;
+                            height: 60px;
+                            /*border-radius: 50%;*/
+                            cursor: pointer;
+                        }
+
+                        /*.marker {
+                        background-image: url(../../Content/images/imagefiles_location_map_pin_red10.png);
+                        background-size: cover;
+                        width: 50px;
+                        height: 60px;
+                        cursor: pointer;
+                    }*/
+                        .mapboxgl-popup {
+                            max-width: 200px;
+                        }
+
+                        /*.mapboxgl-popup {
+                        max-width: 200px;
+                    }*/
+
+                        .mapboxgl-popup-content {
+                            text-align: center;
+                            font-family: 'Open Sans', sans-serif;
+                        }
+                </style>
+
+
+                <div id='map' style='width:1100px; height: 600px;'></div>
+                <div id='menu'>
+                    <input id='streets' type='radio' name='rtoggle' value='streets'>
+                    <label for='streets'>streets</label>
+                    <input id='bright' type='radio' name='rtoggle' value='bright'>
+                    <label for='bright'>bright</label>
+                    <input id='satellite' type='radio' name='rtoggle' value='satellite'>
+                    <label for='satellite'>satellite</label>
+                </div>
+                @*<div id='map_geo' class='map'> </div>*@
+                <script>
+
+                    mapboxgl.accessToken = 'pk.eyJ1IjoiYXJrYXJteW90aW50IiwiYSI6ImNqcml1MWI0MDA1b3IzeXBuZjBpenR6cjQifQ.xLCVjA0cqNEIIovos957vA';
+                    var monument = [96.172256, 16.841569];
+                    var map = new mapboxgl.Map({
+                        container: 'map', // container id
+                        style: 'mapbox://styles/mapbox/streets-v9', // stylesheet location
+                        center: monument, //[96.1539, 16.7791], // starting position [lng, lat]
+                        zoom: 15 // starting zoom
+                    });
+
+                    //for geolocation
+                    map.addControl(new mapboxgl.GeolocateControl({
+                        positionOptions: {
+                            enableHighAccuracy: true
+                        },
+                        trackUserLocation: true
+                    }));
+                    //for geolocation
+
+
+                    // create the popup
+                    var popup = new mapboxgl.Popup({ offset: 25 })
+                        .setText('StarLight Tickets Office Center');
+
+                    // create DOM element for the marker
+                    var el = document.createElement('div');
+                    el.id = 'marker';
+                    // create the marker
+                    new mapboxgl.Marker(el)
+                        .setLngLat(monument)
+                        .setPopup(popup) // sets a popup on this marker
+                        .addTo(map);
+
+
+
+
+
+                    //For radiobuttons
+                    var layerList = document.getElementById('menu');
+                    var inputs = layerList.getElementsByTagName('input');
+
+                    function switchLayer(layer) {
+                        var layerId = layer.target.id;
+                        map.setStyle('mapbox://styles/mapbox/' + layerId + '-v9');
+                    }
+
+                    for (var i = 0; i < inputs.length; i++) {
+                        inputs[i].onclick = switchLayer;
+                    }
+                    //For radiobuttons
+
+                    //For 3D Design
+                    map.on('load', function () {
+                        // Insert the layer beneath any symbol layer.
+                        var layers = map.getStyle().layers;
+
+                        var labelLayerId;
+                        for (var i = 0; i < layers.length; i++) {
+                            if (layers[i].type === 'symbol' && layers[i].layout['text-field']) {
+                                labelLayerId = layers[i].id;
+                                break;
+                            }
+                        }
+
+                        map.addLayer({
+                            'id': '3d-buildings',
+                            'source': 'composite',
+                            'source-layer': 'building',
+                            'filter': ['==', 'extrude', 'true'],
+                            'type': 'fill-extrusion',
+                            'minzoom': 15,
+                            'paint': {
+                                'fill-extrusion-color': '#aaa',
+
+                                // use an 'interpolate' expression to add a smooth transition effect to the
+                                // buildings as the user zooms in
+                                'fill-extrusion-height': [
+                                    "interpolate", ["linear"], ["zoom"],
+                                    15, 0,
+                                    15.05, ["get", "height"]
+                                ],
+                                'fill-extrusion-base': [
+                                    "interpolate", ["linear"], ["zoom"],
+                                    15, 0,
+                                    15.05, ["get", "min_height"]
+                                ],
+                                'fill-extrusion-opacity': .6
+                            }
+                        }, labelLayerId);
+                    });
+                    //For 3D Design
+
+
+
+
+                    //add markers
+                    var geojson = {
+                        type: 'FeatureCollection',
+                        features: [{
+                            type: 'Feature',
+                            geometry: {
+                                type: 'Point',
+                                coordinates: [96.1447, 16.7829]
+                            },
+                            properties: {
+                                title: 'JCGV-2',
+                                description: 'City Mall St. John'
+                            }
+                        },
+                        {
+                            type: 'Feature',
+                            geometry: {
+                                type: 'Point',
+                                coordinates: [96.1448, 16.7775]
+                            },
+                            properties: {
+                                title: 'Mingalar Cineplex',
+                                description: 'Sanpya'
+                            }
+                        }, {
+                            type: 'Feature',
+                            geometry: {
+                                type: 'Point',
+                                coordinates: [96.1539, 16.7791]
+                            },
+                            properties: {
+                                title: 'JCGV-1',
+                                description: 'Junction City'
+                            }
+                        },
+                        {
+                            type: 'Feature',
+                            geometry: {
+                                type: 'Point',
+                                coordinates: [96.1487, 16.7839]
+                            },
+                            properties: {
+                                title: 'National Theatre',
+                                description: 'Myo Ma Kyaung Rd'
+                            }
+                        },
+                        {
+                            type: 'Feature',
+                            geometry: {
+                                type: 'Point',
+                                coordinates: [96.1293, 16.7842]
+                            },
+                            properties: {
+                                title: 'HTWE OO MYANMAR',
+                                description: 'No.(12)(1Floor/Left), Yama Street'
+                            }
+                        },
+                        {
+                            type: 'Feature',
+                            geometry: {
+                                type: 'Point',
+                                coordinates: [96.1868, 16.8213]
+                            },
+                            properties: {
+                                title: 'Thuwunna Stadium',
+                                description: 'Thuwunna, Yangon'
+                            }
+                        },
+                        {
+                            type: 'Feature',
+                            geometry: {
+                                type: 'Point',
+                                coordinates: [96.1608, 16.7840]
+                            },
+                            properties: {
+                                title: 'Aung San Football Stadium',
+                                description: 'Yangon'
+                            }
+                        },
+                        {
+                            type: 'Feature',
+                            geometry: {
+                                type: 'Point',
+                                coordinates: [96.1675, 16.7922]
+                            },
+                            properties: {
+                                title: 'Phoenix Myanmar Lethwei Gym',
+                                description: 'Thein Phyu Stadium,Thein Phyu Road'
+                            }
+                        }
+                        ]
+                    };
+                    // add markers to map
+                    geojson.features.forEach(function (marker) {
+
+                        // create a HTML element for each feature
+                        var el = document.createElement('div');
+                        el.id = 'marker';
+
+                        // make a marker for each feature and add to the map
+                        new mapboxgl.Marker(el)
+                            .setLngLat(marker.geometry.coordinates)
+                            .addTo(map);
+                    });
+                    //var popup = new mapboxgl.Popup({ offset: 25 })
+                    //    .setText(marker.properties.title);
+
+
+                    new mapboxgl.Marker(el)
+                        .setLngLat(marker.geometry.coordinates)
+                        .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+                            .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
+                        .addTo(map);
+
+
+
+                //var geojson = [
+                //    {
+                //        type: 'Feature',
+                //        geometry: {
+                //            type: 'Point',
+                //            coordinates: [96.1448, 16.7775]
+                //        }
+                //    },
+                //    {
+                //        type: 'Feature',
+                //        geometry: {
+                //            type: 'Point',
+                //            coordinates: [96.1447, 16.7829]
+                //        }
+                //    }
+                //];
+
+                //var mapGeo = L.mapbox.map('map_geo', 'mapbox.light')
+                //    .setView([37.8, -96], 4);
+
+                //var myLayer = L.mapbox.featureLayer().setGeoJSON(geojson).addTo(mapGeo);
+                //mapGeo.scrollWheelZoom.disable();
+
+
+
+
+
+
+                //add markers
+
+
+                </script>
+                @*Mapbox*@
+                <div class="clear"></div>
+            </main>
+        </div>
+
+
+    <div class="wrapper row4 bgded overlay" style="background-image:url('../../Content/images/footer.jpg');">
+        <footer id="footer" class="hoc clear">
+            <!-- ################################################################################################ -->
+            <h3 class="heading">StarLight Tickets</h3>
+            <nav>
+                <ul class="nospace inline pushright uppercase">
+                    <li><i class="fa fa-lg fa-home">@Html.ActionLink("Home", "Index", "Home", null, null)</i></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Terms</a></li>
+                    <li><a href="#">Privacy</a></li>
+                </ul>
+            </nav>
+            <ul class="faico clear">
+                <li><a class="faicon-facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+                <li><a class="faicon-twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+                <li><a class="faicon-dribble" href="#"><i class="fa fa-dribbble"></i></a></li>
+                <li><a class="faicon-linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
+                <li><a class="faicon-google-plus" href="#"><i class="fa fa-google-plus"></i></a></li>
+                <li><a class="faicon-vk" href="#"><i class="fa fa-vk"></i></a></li>
+
+            </ul>
+
+            <!-- ################################################################################################ -->
+        </footer>
+    </div>
+    <!-- ################################################################################################ -->
+    <!-- ################################################################################################ -->
+    <!-- ################################################################################################ -->
+    <div class="wrapper row5">
+        <div id="copyright" class="hoc clear">
+            <!-- ################################################################################################ -->
+            <p class="fl_left">Copyright &copy; 2019 - All Rights Reserved - <a href="#">StarLight Ticket</a></p>
+
+            <!-- ################################################################################################ -->
+        </div>
+    </div>
+    <!-- ################################################################################################ -->
+    <!-- ################################################################################################ -->
+    <!-- ################################################################################################ -->
+    <a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
+
+    </body>
+
+</html>
+@{
+    //ViewBag.Title = "Map";
+    Layout = null;
+}
+
+
+

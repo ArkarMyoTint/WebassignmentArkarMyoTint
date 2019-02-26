@@ -1,0 +1,90 @@
+﻿@model StarLight_Ticket.Sport_Save
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Sport_Save</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SportTheatre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SportTheatre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sportname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sportname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Location)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Location)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShowDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShowDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Toatal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Toatal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sport.SportTheatre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sport.SportTheatre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SID_save }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

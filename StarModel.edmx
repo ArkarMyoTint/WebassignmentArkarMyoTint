@@ -1,0 +1,928 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="StarLightTicketsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cinema">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Cid" Type="int" />
+          <Property Name="CinemaName" Type="varchar" MaxLength="50" />
+          <Property Name="ShowDate" Type="date" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="MovieName" Type="varchar" MaxLength="30" />
+          <Property Name="Price" Type="int" />
+        </EntityType>
+        <EntityType Name="Cinema_fix">
+          <Key>
+            <PropertyRef Name="CID" />
+          </Key>
+          <Property Name="CID" Type="int" Nullable="false" />
+          <Property Name="Cinemaname" Type="varchar" MaxLength="50" />
+          <Property Name="Location" Type="varchar" MaxLength="50" />
+          <Property Name="Lng" Type="varchar" MaxLength="50" />
+          <Property Name="Lat" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Cinema_Save">
+          <Key>
+            <PropertyRef Name="CID_save" />
+          </Key>
+          <Property Name="CID_save" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CinemaID" Type="int" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" />
+          <Property Name="CinemaName" Type="varchar" MaxLength="50" />
+          <Property Name="MovieName" Type="varchar" MaxLength="30" />
+          <Property Name="Location" Type="varchar" MaxLength="50" />
+          <Property Name="ShowDate" Type="date" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="Price" Type="int" />
+          <Property Name="Toatal" Type="int" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="Sport">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Sid" Type="int" />
+          <Property Name="SportTheatre" Type="varchar" MaxLength="50" />
+          <Property Name="ShowDate" Type="date" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="Play" Type="varchar" MaxLength="30" />
+          <Property Name="Price" Type="int" />
+        </EntityType>
+        <EntityType Name="Sport_fix">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="int" Nullable="false" />
+          <Property Name="Sporttheatre" Type="varchar" MaxLength="50" />
+          <Property Name="Location" Type="varchar" MaxLength="50" />
+          <Property Name="Lng" Type="varchar" MaxLength="50" />
+          <Property Name="Lat" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Sport_Save">
+          <Key>
+            <PropertyRef Name="SID_save" />
+          </Key>
+          <Property Name="SID_save" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SportID" Type="int" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" />
+          <Property Name="SportTheatre" Type="varchar" MaxLength="50" />
+          <Property Name="Sportname" Type="varchar" MaxLength="30" />
+          <Property Name="Location" Type="varchar" MaxLength="50" />
+          <Property Name="ShowDate" Type="date" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="Price" Type="int" />
+          <Property Name="Toatal" Type="int" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="Theatre">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Tid" Type="int" />
+          <Property Name="TheatreName" Type="varchar" MaxLength="50" />
+          <Property Name="ShowDate" Type="date" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="Play" Type="varchar" MaxLength="30" />
+          <Property Name="Price" Type="int" />
+        </EntityType>
+        <EntityType Name="Theatre_fix">
+          <Key>
+            <PropertyRef Name="TID" />
+          </Key>
+          <Property Name="TID" Type="int" Nullable="false" />
+          <Property Name="Theatrename" Type="varchar" MaxLength="50" />
+          <Property Name="Location" Type="varchar" MaxLength="50" />
+          <Property Name="Lng" Type="varchar" MaxLength="50" />
+          <Property Name="Lat" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Theatre_Save">
+          <Key>
+            <PropertyRef Name="TID_save" />
+          </Key>
+          <Property Name="TID_save" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TheatreID" Type="int" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" />
+          <Property Name="TheatreName" Type="varchar" MaxLength="50" />
+          <Property Name="Play" Type="varchar" MaxLength="30" />
+          <Property Name="Location" Type="varchar" MaxLength="50" />
+          <Property Name="ShowDate" Type="date" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="Price" Type="int" />
+          <Property Name="Toatal" Type="int" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <Association Name="Fk_CIDd">
+          <End Role="Cinema" Type="Self.Cinema" Multiplicity="0..1" />
+          <End Role="Cinema_Save" Type="Self.Cinema_Save" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cinema">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cinema_Save">
+              <PropertyRef Name="CinemaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Fk_id">
+          <End Role="Cinema_fix" Type="Self.Cinema_fix" Multiplicity="0..1" />
+          <End Role="Cinema" Type="Self.Cinema" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cinema_fix">
+              <PropertyRef Name="CID" />
+            </Principal>
+            <Dependent Role="Cinema">
+              <PropertyRef Name="Cid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Fk_sid">
+          <End Role="Sport_fix" Type="Self.Sport_fix" Multiplicity="0..1" />
+          <End Role="Sport" Type="Self.Sport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sport_fix">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="Sport">
+              <PropertyRef Name="Sid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Fk_SIDd">
+          <End Role="Sport" Type="Self.Sport" Multiplicity="0..1" />
+          <End Role="Sport_Save" Type="Self.Sport_Save" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sport">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sport_Save">
+              <PropertyRef Name="SportID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Fk_tid">
+          <End Role="Theatre_fix" Type="Self.Theatre_fix" Multiplicity="0..1" />
+          <End Role="Theatre" Type="Self.Theatre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Theatre_fix">
+              <PropertyRef Name="TID" />
+            </Principal>
+            <Dependent Role="Theatre">
+              <PropertyRef Name="Tid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Fk_TIDd">
+          <End Role="Theatre" Type="Self.Theatre" Multiplicity="0..1" />
+          <End Role="Theatre_Save" Type="Self.Theatre_Save" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Theatre">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Theatre_Save">
+              <PropertyRef Name="TheatreID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'Fk_userid' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="Fk_userid" />-->
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'Fk_usersid' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="Fk_usersid" />-->
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'Fk_usertid' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="Fk_usertid" />-->
+        <EntityContainer Name="StarLightTicketsModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cinema" EntityType="Self.Cinema" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cinema_fix" EntityType="Self.Cinema_fix" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cinema_Save" EntityType="Self.Cinema_Save" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sport" EntityType="Self.Sport" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sport_fix" EntityType="Self.Sport_fix" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sport_Save" EntityType="Self.Sport_Save" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Theatre" EntityType="Self.Theatre" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Theatre_fix" EntityType="Self.Theatre_fix" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Theatre_Save" EntityType="Self.Theatre_Save" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="Fk_CIDd" Association="Self.Fk_CIDd">
+            <End Role="Cinema" EntitySet="Cinema" />
+            <End Role="Cinema_Save" EntitySet="Cinema_Save" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="Fk_id" Association="Self.Fk_id">
+            <End Role="Cinema_fix" EntitySet="Cinema_fix" />
+            <End Role="Cinema" EntitySet="Cinema" />
+          </AssociationSet>
+          <AssociationSet Name="Fk_sid" Association="Self.Fk_sid">
+            <End Role="Sport_fix" EntitySet="Sport_fix" />
+            <End Role="Sport" EntitySet="Sport" />
+          </AssociationSet>
+          <AssociationSet Name="Fk_SIDd" Association="Self.Fk_SIDd">
+            <End Role="Sport" EntitySet="Sport" />
+            <End Role="Sport_Save" EntitySet="Sport_Save" />
+          </AssociationSet>
+          <AssociationSet Name="Fk_tid" Association="Self.Fk_tid">
+            <End Role="Theatre_fix" EntitySet="Theatre_fix" />
+            <End Role="Theatre" EntitySet="Theatre" />
+          </AssociationSet>
+          <AssociationSet Name="Fk_TIDd" Association="Self.Fk_TIDd">
+            <End Role="Theatre" EntitySet="Theatre" />
+            <End Role="Theatre_Save" EntitySet="Theatre_Save" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="StarLightTicketsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+        </EntityType>
+        <EntityType Name="Cinema">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Cid" Type="Int32" />
+          <Property Name="CinemaName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ShowDate" Type="DateTime" Precision="0" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="MovieName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Price" Type="Int32" />
+          <NavigationProperty Name="Cinema_Save" Relationship="Self.Fk_CIDd" FromRole="Cinema" ToRole="Cinema_Save" />
+          <NavigationProperty Name="Cinema_fix" Relationship="Self.Fk_id" FromRole="Cinema" ToRole="Cinema_fix" />
+        </EntityType>
+        <EntityType Name="Cinema_fix">
+          <Key>
+            <PropertyRef Name="CID" />
+          </Key>
+          <Property Name="CID" Type="Int32" Nullable="false" />
+          <Property Name="Cinemaname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Lng" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Lat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Cinemas" Relationship="Self.Fk_id" FromRole="Cinema_fix" ToRole="Cinema" />
+        </EntityType>
+        <EntityType Name="Cinema_Save">
+          <Key>
+            <PropertyRef Name="CID_save" />
+          </Key>
+          <Property Name="CID_save" Type="Int32" Nullable="false" />
+          <Property Name="CinemaID" Type="Int32" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="CinemaName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MovieName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ShowDate" Type="DateTime" Precision="0" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="Price" Type="Int32" />
+          <Property Name="Toatal" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="Cinema" Relationship="Self.Fk_CIDd" FromRole="Cinema_Save" ToRole="Cinema" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Fk_CIDd">
+          <End Role="Cinema" Type="Self.Cinema" Multiplicity="0..1" />
+          <End Role="Cinema_Save" Type="Self.Cinema_Save" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cinema">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cinema_Save">
+              <PropertyRef Name="CinemaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Fk_id">
+          <End Role="Cinema_fix" Type="Self.Cinema_fix" Multiplicity="0..1" />
+          <End Role="Cinema" Type="Self.Cinema" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cinema_fix">
+              <PropertyRef Name="CID" />
+            </Principal>
+            <Dependent Role="Cinema">
+              <PropertyRef Name="Cid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="StarLightTicketsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+          <EntitySet Name="Cinemas" EntityType="Self.Cinema" />
+          <EntitySet Name="Cinema_fix" EntityType="Self.Cinema_fix" />
+          <EntitySet Name="Cinema_Save" EntityType="Self.Cinema_Save" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="Fk_CIDd" Association="Self.Fk_CIDd">
+            <End Role="Cinema" EntitySet="Cinemas" />
+            <End Role="Cinema_Save" EntitySet="Cinema_Save" />
+          </AssociationSet>
+          <AssociationSet Name="Fk_id" Association="Self.Fk_id">
+            <End Role="Cinema_fix" EntitySet="Cinema_fix" />
+            <End Role="Cinema" EntitySet="Cinemas" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <EntitySet Name="Sports" EntityType="StarLightTicketsModel.Sport" />
+          <EntitySet Name="Sport_fix" EntityType="StarLightTicketsModel.Sport_fix" />
+          <EntitySet Name="Sport_Save" EntityType="StarLightTicketsModel.Sport_Save" />
+          <EntitySet Name="Theatres" EntityType="StarLightTicketsModel.Theatre" />
+          <EntitySet Name="Theatre_fix" EntityType="StarLightTicketsModel.Theatre_fix" />
+          <EntitySet Name="Theatre_Save" EntityType="StarLightTicketsModel.Theatre_Save" />
+          <AssociationSet Name="Fk_sid" Association="StarLightTicketsModel.Fk_sid">
+            <End Role="Sport_fix" EntitySet="Sport_fix" />
+            <End Role="Sport" EntitySet="Sports" />
+          </AssociationSet>
+          <AssociationSet Name="Fk_SIDd" Association="StarLightTicketsModel.Fk_SIDd">
+            <End Role="Sport" EntitySet="Sports" />
+            <End Role="Sport_Save" EntitySet="Sport_Save" />
+          </AssociationSet>
+          <AssociationSet Name="Fk_tid" Association="StarLightTicketsModel.Fk_tid">
+            <End Role="Theatre_fix" EntitySet="Theatre_fix" />
+            <End Role="Theatre" EntitySet="Theatres" />
+          </AssociationSet>
+          <AssociationSet Name="Fk_TIDd" Association="StarLightTicketsModel.Fk_TIDd">
+            <End Role="Theatre" EntitySet="Theatres" />
+            <End Role="Theatre_Save" EntitySet="Theatre_Save" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Sport">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Sid" Type="Int32" />
+          <Property Name="SportTheatre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ShowDate" Type="DateTime" Precision="0" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="Play" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Price" Type="Int32" />
+          <NavigationProperty Name="Sport_fix" Relationship="StarLightTicketsModel.Fk_sid" FromRole="Sport" ToRole="Sport_fix" />
+          <NavigationProperty Name="Sport_Save" Relationship="StarLightTicketsModel.Fk_SIDd" FromRole="Sport" ToRole="Sport_Save" />
+        </EntityType>
+        <EntityType Name="Sport_fix">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="Int32" Nullable="false" />
+          <Property Name="Sporttheatre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Lng" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Lat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Sports" Relationship="StarLightTicketsModel.Fk_sid" FromRole="Sport_fix" ToRole="Sport" />
+        </EntityType>
+        <EntityType Name="Sport_Save">
+          <Key>
+            <PropertyRef Name="SID_save" />
+          </Key>
+          <Property Name="SID_save" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SportID" Type="Int32" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="SportTheatre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Sportname" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ShowDate" Type="DateTime" Precision="0" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="Price" Type="Int32" />
+          <Property Name="Toatal" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="Sport" Relationship="StarLightTicketsModel.Fk_SIDd" FromRole="Sport_Save" ToRole="Sport" />
+        </EntityType>
+        <EntityType Name="Theatre">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Tid" Type="Int32" />
+          <Property Name="TheatreName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ShowDate" Type="DateTime" Precision="0" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="Play" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Price" Type="Int32" />
+          <NavigationProperty Name="Theatre_fix" Relationship="StarLightTicketsModel.Fk_tid" FromRole="Theatre" ToRole="Theatre_fix" />
+          <NavigationProperty Name="Theatre_Save" Relationship="StarLightTicketsModel.Fk_TIDd" FromRole="Theatre" ToRole="Theatre_Save" />
+        </EntityType>
+        <EntityType Name="Theatre_fix">
+          <Key>
+            <PropertyRef Name="TID" />
+          </Key>
+          <Property Name="TID" Type="Int32" Nullable="false" />
+          <Property Name="Theatrename" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Lng" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Lat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Theatres" Relationship="StarLightTicketsModel.Fk_tid" FromRole="Theatre_fix" ToRole="Theatre" />
+        </EntityType>
+        <EntityType Name="Theatre_Save">
+          <Key>
+            <PropertyRef Name="TID_save" />
+          </Key>
+          <Property Name="TID_save" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TheatreID" Type="Int32" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="TheatreName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Play" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ShowDate" Type="DateTime" Precision="0" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="Price" Type="Int32" />
+          <Property Name="Toatal" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="Theatre" Relationship="StarLightTicketsModel.Fk_TIDd" FromRole="Theatre_Save" ToRole="Theatre" />
+        </EntityType>
+        <Association Name="Fk_sid">
+          <End Type="StarLightTicketsModel.Sport_fix" Role="Sport_fix" Multiplicity="0..1" />
+          <End Type="StarLightTicketsModel.Sport" Role="Sport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sport_fix">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="Sport">
+              <PropertyRef Name="Sid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Fk_SIDd">
+          <End Type="StarLightTicketsModel.Sport" Role="Sport" Multiplicity="0..1" />
+          <End Type="StarLightTicketsModel.Sport_Save" Role="Sport_Save" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sport">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sport_Save">
+              <PropertyRef Name="SportID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Fk_tid">
+          <End Type="StarLightTicketsModel.Theatre_fix" Role="Theatre_fix" Multiplicity="0..1" />
+          <End Type="StarLightTicketsModel.Theatre" Role="Theatre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Theatre_fix">
+              <PropertyRef Name="TID" />
+            </Principal>
+            <Dependent Role="Theatre">
+              <PropertyRef Name="Tid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Fk_TIDd">
+          <End Type="StarLightTicketsModel.Theatre" Role="Theatre" Multiplicity="0..1" />
+          <End Type="StarLightTicketsModel.Theatre_Save" Role="Theatre_Save" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Theatre">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Theatre_Save">
+              <PropertyRef Name="TheatreID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="StarLightTicketsModelStoreContainer" CdmEntityContainer="StarLightTicketsEntities">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="StarLightTicketsModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="StarLightTicketsModel.AspNetRole">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="StarLightTicketsModel.AspNetUserClaim">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="StarLightTicketsModel.AspNetUserLogin">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="StarLightTicketsModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cinemas">
+            <EntityTypeMapping TypeName="StarLightTicketsModel.Cinema">
+              <MappingFragment StoreEntitySet="Cinema">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Cid" ColumnName="Cid" />
+                <ScalarProperty Name="CinemaName" ColumnName="CinemaName" />
+                <ScalarProperty Name="ShowDate" ColumnName="ShowDate" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="MovieName" ColumnName="MovieName" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cinema_fix">
+            <EntityTypeMapping TypeName="StarLightTicketsModel.Cinema_fix">
+              <MappingFragment StoreEntitySet="Cinema_fix">
+                <ScalarProperty Name="CID" ColumnName="CID" />
+                <ScalarProperty Name="Cinemaname" ColumnName="Cinemaname" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Lng" ColumnName="Lng" />
+                <ScalarProperty Name="Lat" ColumnName="Lat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cinema_Save">
+            <EntityTypeMapping TypeName="StarLightTicketsModel.Cinema_Save">
+              <MappingFragment StoreEntitySet="Cinema_Save">
+                <ScalarProperty Name="CID_save" ColumnName="CID_save" />
+                <ScalarProperty Name="CinemaID" ColumnName="CinemaID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="CinemaName" ColumnName="CinemaName" />
+                <ScalarProperty Name="MovieName" ColumnName="MovieName" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="ShowDate" ColumnName="ShowDate" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Toatal" ColumnName="Toatal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="StarLightTicketsModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="Sports">
+            <EntityTypeMapping TypeName="StarLightTicketsModel.Sport">
+              <MappingFragment StoreEntitySet="Sport">
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Play" ColumnName="Play" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="ShowDate" ColumnName="ShowDate" />
+                <ScalarProperty Name="SportTheatre" ColumnName="SportTheatre" />
+                <ScalarProperty Name="Sid" ColumnName="Sid" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sport_fix">
+            <EntityTypeMapping TypeName="StarLightTicketsModel.Sport_fix">
+              <MappingFragment StoreEntitySet="Sport_fix">
+                <ScalarProperty Name="Lat" ColumnName="Lat" />
+                <ScalarProperty Name="Lng" ColumnName="Lng" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Sporttheatre" ColumnName="Sporttheatre" />
+                <ScalarProperty Name="SID" ColumnName="SID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sport_Save">
+            <EntityTypeMapping TypeName="StarLightTicketsModel.Sport_Save">
+              <MappingFragment StoreEntitySet="Sport_Save">
+                <ScalarProperty Name="Toatal" ColumnName="Toatal" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="ShowDate" ColumnName="ShowDate" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Sportname" ColumnName="Sportname" />
+                <ScalarProperty Name="SportTheatre" ColumnName="SportTheatre" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="SportID" ColumnName="SportID" />
+                <ScalarProperty Name="SID_save" ColumnName="SID_save" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Theatres">
+            <EntityTypeMapping TypeName="StarLightTicketsModel.Theatre">
+              <MappingFragment StoreEntitySet="Theatre">
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Play" ColumnName="Play" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="ShowDate" ColumnName="ShowDate" />
+                <ScalarProperty Name="TheatreName" ColumnName="TheatreName" />
+                <ScalarProperty Name="Tid" ColumnName="Tid" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Theatre_fix">
+            <EntityTypeMapping TypeName="StarLightTicketsModel.Theatre_fix">
+              <MappingFragment StoreEntitySet="Theatre_fix">
+                <ScalarProperty Name="Lat" ColumnName="Lat" />
+                <ScalarProperty Name="Lng" ColumnName="Lng" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Theatrename" ColumnName="Theatrename" />
+                <ScalarProperty Name="TID" ColumnName="TID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Theatre_Save">
+            <EntityTypeMapping TypeName="StarLightTicketsModel.Theatre_Save">
+              <MappingFragment StoreEntitySet="Theatre_Save">
+                <ScalarProperty Name="Toatal" ColumnName="Toatal" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="ShowDate" ColumnName="ShowDate" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Play" ColumnName="Play" />
+                <ScalarProperty Name="TheatreName" ColumnName="TheatreName" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="TheatreID" ColumnName="TheatreID" />
+                <ScalarProperty Name="TID_save" ColumnName="TID_save" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

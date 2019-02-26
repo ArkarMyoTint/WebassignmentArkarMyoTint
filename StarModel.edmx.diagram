@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="eebf61cfed3049968e0bc9982c4d02f9" Name="Diagram1" ZoomLevel="81">
+        <EntityTypeShape EntityType="StarLightTicketsModel.C__MigrationHistory" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StarLightTicketsModel.AspNetRole" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="StarLightTicketsModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="StarLightTicketsModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StarLightTicketsModel.AspNetUser" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="StarLightTicketsModel.Cinema" Width="1.5" PointX="3" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StarLightTicketsModel.Cinema_fix" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="StarLightTicketsModel.Cinema_Save" Width="1.5" PointX="5.25" PointY="7" IsExpanded="true" />
+        <AssociationConnector Association="StarLightTicketsModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="StarLightTicketsModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="StarLightTicketsModel.Fk_CIDd" ManuallyRouted="false" />
+        <AssociationConnector Association="StarLightTicketsModel.Fk_id" ManuallyRouted="false" />
+        <AssociationConnector Association="StarLightTicketsModel.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="StarLightTicketsModel.Sport" Width="1.5" PointX="9.625" PointY="9.125" />
+        <EntityTypeShape EntityType="StarLightTicketsModel.Sport_fix" Width="1.5" PointX="7.375" PointY="9.5" />
+        <EntityTypeShape EntityType="StarLightTicketsModel.Sport_Save" Width="1.5" PointX="11.875" PointY="9" />
+        <EntityTypeShape EntityType="StarLightTicketsModel.Theatre" Width="1.5" PointX="9.625" PointY="4.125" />
+        <EntityTypeShape EntityType="StarLightTicketsModel.Theatre_fix" Width="1.5" PointX="7.375" PointY="4.5" />
+        <EntityTypeShape EntityType="StarLightTicketsModel.Theatre_Save" Width="1.5" PointX="11.875" PointY="4" />
+        <AssociationConnector Association="StarLightTicketsModel.Fk_sid" />
+        <AssociationConnector Association="StarLightTicketsModel.Fk_SIDd" />
+        <AssociationConnector Association="StarLightTicketsModel.Fk_tid" />
+        <AssociationConnector Association="StarLightTicketsModel.Fk_TIDd" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

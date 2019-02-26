@@ -1,0 +1,204 @@
+﻿@model StarLight_Ticket.Models.RegisterViewModel
+@{
+    Layout = null;
+    //ViewBag.Title = "Register";
+}
+@using Microsoft.AspNet.Identity
+
+<!DOCTYPE html>
+<!--
+Template Name: Brickary
+Author: <a href="http://www.os-templates.com/">OS Templates</a>
+Author URI: http://www.os-templates.com/
+Licence: Free to use under our free template licence terms
+Licence URI: http://www.os-templates.com/template-terms
+-->
+<html>
+<head>
+    <title>StarLight Tickets</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="~/Content/layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
+</head>
+<body id="top">
+    <!-- ################################################################################################ -->
+    <!-- ################################################################################################ -->
+    <!-- ################################################################################################ -->
+    <div class="wrapper row0">
+        <div id="topbar" class="hoc clear">
+            <!-- ################################################################################################ -->
+            <div class="fl_left">
+                <ul>
+                    <li>@Html.ActionLink("StarLight Tickets", "Index", "Home", null, null) <i class="fa fa-lg fa-home"></i></li>
+                    <li><i class="fa fa-phone"></i> +00 (123) 456 7890</li>
+                    <li><i class="fa fa-envelope-o"></i> info@domain.com</li>
+                </ul>
+            </div>
+            <div class="fl_right">
+                <ul>
+
+                    @*<li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>*@
+                    @if (Request.IsAuthenticated)
+                    {
+                        using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            @*<ul class="nav navbar-nav navbar-right">*@
+                            <li>
+                                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                            </li>
+                                    <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+                                    @*</ul>*@
+                        }
+                    }
+                    else
+                    {
+                        @*<ul class="nav navbar-nav navbar-right">*@
+                        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                                <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                                @*</ul>*@
+                    }
+
+
+                </ul>
+            </div>
+            
+        </div>
+    </div>
+    <div class="bgded overlay" style="background-image:url('../../Content/images/Travel-Wallpaper-008.jpg');">
+        
+    <div class="wrapper row1">
+        <header id="header" class="hoc clear">
+
+            <div id="logo" class="fl_left">
+                <h1>@Html.ActionLink("StarLight Tickets", "Index", "Home", null, null)</h1>
+            </div>
+            <nav id="mainav" class="fl_right">
+                <ul class="clear">
+                    <li class="active">@Html.ActionLink("Home", "Index", "Home", null, null)</li>
+                    <li>
+                        <a class="drop" href="#">Category</a>
+                        <ul>
+                            <li><a href="pages/gallery.html">Cinema</a></li>
+                            <li><a href="pages/full-width.html">Live Concert</a></li>
+                            <li><a href="pages/sidebar-left.html">Sport</a></li>
+                            <li><a href="pages/sidebar-right.html">Hot events</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="drop" href="#">Help Center</a>
+                        <ul>
+                            <li>@Html.ActionLink("View Map!", "Map", "Map", null, null)</li>
+                            <li>
+                                @Html.ActionLink("Service", "Index", "HelpCenter", null, null)
+                                <ul>
+                                    <li><a href="#">Feed Back</a></li>
+                                    <li><a href="#">Problem Report</a></li>
+                                    <li><a href="#">Support Us</a></li>
+                                </ul>
+                            </li>
+                            <li>@Html.ActionLink("About Us", "Index", "AboutUs", null, null)</li>
+                        </ul>
+                    </li>
+                    @*<li><a href="#">Link Text</a></li>
+                        <li><a href="#">Link Text</a></li>*@
+                </ul>
+            </nav>
+            <!-- ################################################################################################ -->
+        </header>
+    </div>
+        </div>
+
+
+        <h2>@ViewBag.Title.</h2>
+
+        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            <h4>Create a new account.</h4>
+            <hr />
+            @Html.ValidationSummary("", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" class="btn btn-default" value="Register" />
+                </div>
+            </div>
+        }
+
+
+    <div class="wrapper row4 bgded overlay" style="background-image:url('../../Content/images/footer.jpg');">
+        <footer id="footer" class="hoc clear">
+            <!-- ################################################################################################ -->
+            <h3 class="heading">StarLight Tickets</h3>
+            <nav>
+                <ul class="nospace inline pushright uppercase">
+                    <li><a href="index.html"><i class="fa fa-lg fa-home"></i></a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Terms</a></li>
+                    <li><a href="#">Privacy</a></li>
+                    <li><a href="#">Cookies</a></li>
+                    <li><a href="#">Disclaimer</a></li>
+                </ul>
+            </nav>
+            <ul class="faico clear">
+                <li><a class="faicon-facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+                <li><a class="faicon-twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+                <li><a class="faicon-dribble" href="#"><i class="fa fa-dribbble"></i></a></li>
+                <li><a class="faicon-linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
+                <li><a class="faicon-google-plus" href="#"><i class="fa fa-google-plus"></i></a></li>
+                <li><a class="faicon-vk" href="#"><i class="fa fa-vk"></i></a></li>
+            </ul>
+            <!-- ################################################################################################ -->
+        </footer>
+    </div>
+    <!-- ################################################################################################ -->
+    <!-- ################################################################################################ -->
+    <!-- ################################################################################################ -->
+    <div class="wrapper row5">
+        <div id="copyright" class="hoc clear">
+            <!-- ################################################################################################ -->
+            <p class="fl_left">Copyright &copy; 2019 - All Rights Reserved - <a href="#">Domain Name</a></p>
+            <p class="fl_right">Template by <a target="_blank" href="http://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>
+            <!-- ################################################################################################ -->
+        </div>
+    </div>
+    <!-- ################################################################################################ -->
+    <!-- ################################################################################################ -->
+    <!-- ################################################################################################ -->
+    <a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
+    <!-- JAVASCRIPTS -->
+    <script src="~/Content/layout/scripts/jquery.min.js"></script>
+    <script src="~/Content/layout/scripts/jquery.backtotop.js"></script>
+    <script src="~/Content/layout/scripts/jquery.mobilemenu.js"></script>
+    <script src="~/Content/layout/scripts/jquery.flexslider-min.js"></script>
+
+
+        
+</body>
+</html>
+
+   
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }

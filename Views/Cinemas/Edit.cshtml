@@ -1,0 +1,186 @@
+﻿@model StarLight_Ticket.Cinema
+
+@{
+    Layout = null;
+    //ViewBag.Title = "Edit";
+}
+
+@using Microsoft.AspNet.Identity
+<!DOCTYPE html>
+<html>
+<head>
+    <title>StarLight Tickets</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="~/Content/layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+
+</head>
+<body id="top">
+    <!-- ################################################################################################ -->
+    <!-- ################################################################################################ -->
+    <!-- ################################################################################################ -->
+    <div class="wrapper row0">
+        <div id="topbar" class="hoc clear">
+            <!-- ################################################################################################ -->
+            <div class="fl_left">
+                <ul>
+                    <li>@Html.ActionLink("StarLight Tickets", "Index", "Home", null, null) <i class="fa fa-lg fa-home"></i></li>
+                    <li><i class="fa fa-phone"></i> +95 9428582021</li>
+                    <li><i class="fa fa-envelope-o"></i> starlight@gmail.com</li>
+                </ul>
+            </div>
+            <div class="fl_right">
+                <ul>
+
+                    @*<li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>*@
+                    @if (Request.IsAuthenticated)
+                    {
+                        using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            @*<ul class="nav navbar-nav navbar-right">*@
+                            <li>
+                                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                            </li>
+                                    <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+                                    @*</ul>*@
+                        }
+                    }
+                    else
+                    {
+                        @*<ul class="nav navbar-nav navbar-right">*@
+                        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                                <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                                @*</ul>*@
+                    }
+
+
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Top Background Image Wrapper -->
+    <div class="bgded overlay" style="background-image:url('../../Content/images/Travel-Wallpaper-008.jpg');">
+
+        <div class="wrapper row1">
+            <header id="header" class="hoc clear">
+
+                <div id="logo" class="fl_left">
+                    <h1>@Html.ActionLink("StarLight Tickets", "Index", "Home", null, null)</h1>
+                </div>
+                <nav id="mainav" class="fl_right">
+                    <ul class="clear">
+                        <li class="active">@Html.ActionLink("Home", "Index", "Home", null, null)</li>
+                        <li>
+                            <a class="drop" href="#">Category</a>
+                            <ul>
+                                <li>@Html.ActionLink("Cinema", "Index", "Cinemas", null, null)</li>
+                                <li>@Html.ActionLink("Theatre", "Index", "Theatres", null, null)</li>
+                                <li>@Html.ActionLink("Sport", "Index", "Sports", null, null)</li>
+                                <li>@Html.ActionLink("Watch Trailers", "Index", "Trailer", null, null)</li>
+
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="drop" href="#">Help Center</a>
+                            <ul>
+                                <li>@Html.ActionLink("View Map!", "Map", "Map", null, null)</li>
+                                <li>
+                                    @Html.ActionLink("Service", "Index", "HelpCenter", null, null)
+                                    @*<ul>
+                                            <li><a href="#">Feed Back</a></li>
+                                            <li><a href="#">Problem Report</a></li>
+                                            <li><a href="#">Support Us</a></li>
+                                        </ul>*@
+                                </li>
+                                <li>@Html.ActionLink("About Us", "Index", "AboutUs", null, null)</li>
+                            </ul>
+                        </li>
+                        @*<li><a href="#">Link Text</a></li>
+                            <li><a href="#">Link Text</a></li>*@
+                    </ul>
+                </nav>
+                <!-- ################################################################################################ -->
+            </header>
+        </div>
+        </div>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <h4>Cinema</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.Id)
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Cid, "Cid", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("Cid", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Cid, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CinemaName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.CinemaName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CinemaName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ShowDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ShowDate, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ShowDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.MovieName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.MovieName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.MovieName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Save" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        }
+
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    </body>
+</html>

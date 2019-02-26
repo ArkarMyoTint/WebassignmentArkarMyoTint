@@ -1,0 +1,409 @@
+﻿@*<div class="jumbotron">
+    <h1>ASP.NET</h1>
+    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    <h1>Buy Your Tickets Now!</h1>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Getting started</h2>
+        <p>
+            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
+            enables a clean separation of concerns and gives you full control over markup
+            for enjoyable, agile development.
+        </p>
+        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Get more libraries</h2>
+        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
+        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Web Hosting</h2>
+        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    </div>*@
+
+
+@using Microsoft.AspNet.Identity
+        @{
+            //ViewBag.Title = "Home Page";
+            Layout = null;
+        }
+
+        <!DOCTYPE html>
+        <!--
+    Template Name: Brickary
+    Author: <a href="http://www.os-templates.com/">OS Templates</a>
+    Author URI: http://www.os-templates.com/
+    Licence: Free to use under our free template licence terms
+    Licence URI: http://www.os-templates.com/template-terms
+    -->
+        <html>
+        <head>
+            <title>StarLight Tickets</title>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+            <link href="~/Content/layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+            <style>
+                html{
+                    scroll-behavior: smooth;
+                }
+            </style>
+
+        </head>
+        <body id="top">
+            <!-- ################################################################################################ -->
+            <!-- ################################################################################################ -->
+            <!-- ################################################################################################ -->
+            <div class="wrapper row0">
+                <div id="topbar" class="hoc clear">
+                    <!-- ################################################################################################ -->
+                    <div class="fl_left">
+                        <ul>
+                            <li>@Html.ActionLink("StarLight Tickets", "Index", "Home", null, null) <i class="fa fa-lg fa-home"></i></li>
+                            <li><i class="fa fa-phone"></i> +95 9428582021</li>
+                            <li><i class="fa fa-envelope-o"></i> starlight@gmail.com</li>
+                        </ul>
+                    </div>
+                    <div class="fl_right">
+                        <ul>
+
+                            @*<li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>*@
+                            @if (Request.IsAuthenticated)
+                            {
+                                using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                                {
+                                    @Html.AntiForgeryToken()
+
+                                    @*<ul class="nav navbar-nav navbar-right">*@
+                                    <li>
+                                        @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                                    </li>
+                                    <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+                                    @*</ul>*@
+                                }
+                            }
+                            else
+                            {
+                                @*<ul class="nav navbar-nav navbar-right">*@
+                                <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                                <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                                @*</ul>*@
+                            }
+
+
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Top Background Image Wrapper -->
+            <div class="bgded overlay" style="background-image:url('../../Content/images/Travel-Wallpaper-008.jpg');">
+
+                <div class="wrapper row1">
+                    <header id="header" class="hoc clear">
+
+                        <div id="logo" class="fl_left">
+                            <h1>@Html.ActionLink("StarLight Tickets", "Index", "Home", null, null)</h1>
+                        </div>
+                        <nav id="mainav" class="fl_right">
+                            <ul class="clear">
+                                <li class="active">@Html.ActionLink("Home", "Index", "Home", null, null)</li>
+                                <li>
+                                    <a class="drop" href="#">Category</a>
+                                    <ul>
+                                        <li>@Html.ActionLink("Cinema", "Index", "Cinemas", null, null)</li>
+                                        <li>@Html.ActionLink("Theatre", "Index", "Theatres", null, null)</li>
+                                        <li>@Html.ActionLink("Sport", "Index", "Sports", null, null)</li>
+                                        <li>@Html.ActionLink("Watch Trailers", "Index", "Trailer", null, null)</li>
+                                        
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a class="drop" href="#">Help Center</a>
+                                    <ul>
+                                        <li>@Html.ActionLink("View Map!", "Map", "Map", null, null)</li>
+                                        <li>
+                                            @Html.ActionLink("Service", "Index", "HelpCenter", null, null)
+                                            @*<ul>
+                                                <li><a href="#">Feed Back</a></li>
+                                                <li><a href="#">Problem Report</a></li>
+                                                <li><a href="#">Support Us</a></li>
+                                            </ul>*@
+                                        </li>
+                                        <li>@Html.ActionLink("About Us", "Index", "AboutUs", null, null)</li>
+                                    </ul>
+                                </li>
+                                @*<li><a href="#">Link Text</a></li>
+                            <li><a href="#">Link Text</a></li>*@
+                            </ul>
+                        </nav>
+                        <!-- ################################################################################################ -->
+                    </header>
+                </div>
+                <!-- ################################################################################################ -->
+                <!-- ################################################################################################ -->
+                <!-- ################################################################################################ -->
+                <div id="pageintro" class="hoc clear">
+                    <!-- ################################################################################################ -->
+                    <div class="flexslider basicslider">
+                        <ul class="slides">
+                            <li>
+                                <article>
+                                    <h3 class="heading animated fadeInLeft">Welcome To StarLight Tickets</h3>
+                                    <p class="animated fadeInRight" >Buy Your Tickets on Online!</p>
+                                    <footer>
+                                        <form class="group" method="post" action="#">
+                                            <a class="btn inverse" href="#buy">Buy Now</a>
+                                        </form>
+                                    </footer>
+                                </article>
+                            </li>
+                            <li>
+                                <article>
+                                    <p>Current Hot events</p>
+                                    <h3 class="heading">5 Star live concert show</h3>
+                                    <p>Till February 28th</p>
+                                    <footer><a class="btn inverse" href="#buy">Buy Now</a></footer>
+                                </article>
+                            </li>
+                            <li>
+                                <article>
+                                    <p>Promotions</p>
+                                    <h3 class="heading">Buy 3 Tickets, Get 10% Off!</h3>
+                                    <p>Most Realiable Ticket source in Myanmar</p>
+                                    <footer><a class="btn" href="#buy">Get Your Own Tickets here!</a></footer>
+                                </article>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- ################################################################################################ -->
+                </div>
+                <!-- ################################################################################################ -->
+            </div>
+            <!-- End Top Background Image Wrapper -->
+            <!-- ################################################################################################ -->
+            <!-- ################################################################################################ -->
+            <!-- ################################################################################################ -->
+
+    <div class="wrapper row3 coloured">
+        <main class="hoc container clear">
+            <!-- main body -->
+            <!-- ################################################################################################ -->
+            <section id="buy">
+                <div id="introblocks">
+                    <ul class="nospace group">
+                        <li class="one_third first">
+                            <article>
+                                <div>
+                                    <h6 class="heading">Cinema</h6>
+                                    <p>Get Your Tickets for Cinema you like to watch. There are various cinema and movies to choose from! And have Recommendation too.[&hellip;]</p>
+                                </div>
+                                <img src="~/Content/images/cinema.jpg" alt="">
+                                <footer>@Html.ActionLink("MORE DETAILS!", "Index", "Cinemas", null, null)</footer>
+                            </article>
+                        </li>
+                        <li class="one_third">
+                            <article>
+                                <div>
+                                    <h6 class="heading">Theatre</h6>
+                                    <p>Here you can get the live show tickets that are currently aviliable. So you can buy live concert tickets from your home.[&hellip;]</p>
+                                </div>
+                                <img src="~/Content/images/concdert.jpg" alt="">
+                                <footer>@Html.ActionLink("MORE DETAILS!", "Index", "Theatres", null, null)</footer>
+                            </article>
+                        </li>
+                        <li class="one_third">
+                            <article>
+                                <div>
+                                    <h6 class="heading">Sport</h6>
+                                    <p>Sports are popluar games around the world and if there is Football or ONE Championship held in Myanmar, you can get your tickets here![&hellip;]</p>
+                                </div>
+                                <img src="~/Content/images/sport.jpg" alt="">
+                                <footer>@Html.ActionLink("MORE DETAILS!", "Index", "Sports", null, null)</footer>
+                            </article>
+                        </li>
+                    </ul>
+                </div>
+                <p class="center"><i class="btn inverse">@Html.ActionLink("Watch Trailers", "Index", "Trailer", null, null)</i></p>
+                <p class="center"><a class="btn inverse" href="#hi">Browse For More!</a></p>
+                <!-- ################################################################################################ -->
+                <!-- / main body -->
+                <div class="clear"></div>
+            </section>
+</main>
+    </div>
+
+            <!-- ################################################################################################ -->
+            <!-- ################################################################################################ -->
+            <!-- ################################################################################################ -->
+            <div class="wrapper bgded overlay" style="background-image:url('../../Content/images/a.jpg');">
+                <section class="hoc container clear" id="hi">
+                    <!-- ################################################################################################ -->
+                    <div class="sectiontitle center">
+                        <h3 class="heading">A little About StarLight Tickets</h3>
+                    </div>
+                    <ul class="nospace group center">
+                        <li class="one_half first">
+                            <article>
+                               @* <a href="#"><i class="btmspace-30 icon fa fa-500px"></i></a>*@
+                                <h6 class="heading font-x1">About StarLight Tickets Web-app</h6>
+                                <p>StarLight Tickets is the online ticket selling web-app that offers three different types of categories. In this web-app, the customers can get tickets that are being held at the moment in Yangon, Myanmar. Since there aren’t a lot of online ticket selling center in Myanmar, the Starlight Tickets is to sell the tickets online to customers who can’t afford to give time to buy tickets at the ticket center. Also the web-app used Geolocation so customers can know where they are and the UI designs are simple so it’s easier to use. The customers can also use this web on both PC and mobile. And customers can also add their social accounts in this web to buy tickets without any problems. The main reason of starlight tickets is to sell the tickets to customers online without any difficulties. So when the customer wants to book for tickets they can buy them online through their smartphones. </p>
+                                @*<footer><a href="#">View the video of beautiful Myanmar &raquo;</a></footer>*@
+                            </article>
+                        </li>
+                        <li>
+                            <img src="~/Content/images/frame.png" />
+                        </li>
+                    </ul>
+                    <p class="center"><a class="btn inverse" href="#p">To next Content</a></p>
+                    <!-- ################################################################################################ -->
+                </section>
+                
+            </div>
+            
+            <!-- ################################################################################################ -->
+            <!-- ################################################################################################ -->
+            <!-- ################################################################################################ -->
+            <div class="wrapper bgded overlay" style="background-image:url('../../Content/images/adobestock_112305269-1.png');">
+                <section class="hoc container clear" id="p">
+                    <!-- ################################################################################################ -->
+                    <div class="sectiontitle center">
+                        <h3 class="heading">Some Good Reasons</h3>
+                        <p>Why You should buy Tickets from StarLight Tickets</p>
+                    </div>
+                    <ul class="nospace group center">
+                        <li class="one_third first">
+                            <article>
+                                @*<a href="#"><i class="btmspace-30 icon fa fa-500px"></i></a>*@
+                                <h6 class="heading font-x1">100% Money Back Guarantee</h6>
+                                <p>In order to protect you, all tickets that are listed on StarLight-Tickets.com are backed by our 100% money-back guarantee.</p>
+                                @*<footer><a href="#">Read More &raquo;</a></footer>*@
+                            </article>
+                        </li>
+                        <li class="one_third">
+                            <article>
+                               @* <a href="#"><i class="btmspace-30 icon fa fa-envira"></i></a>*@
+                                <h6 class="heading font-x1">100% Genuine Quality </h6>
+                                <p>Having a trust with customers is a must have, StarLight-Tickets.com is a trusted reseller for tickets online.</p>
+                                @*<footer><a href="#">Read More &raquo;</a></footer>*@
+                            </article>
+                        </li>
+                        <li class="one_third">
+                            <article>
+                                @*<a href="#"><i class="btmspace-30 icon fa fa-empire"></i></a>*@
+                                <h6 class="heading font-x1">Fully Secure Site </h6>
+                                <p>StarLight-Tickets.com is a verified 100% secure site! The web-site is thoroughly checks and are conducted regularly for malware and viruses.</p>
+                                @*<footer><a href="#">Read More &raquo;</a></footer>*@
+                            </article>
+                        </li>
+                    </ul>
+                    <!-- ################################################################################################ -->
+                </section>
+            </div>
+            <!-- ################################################################################################ -->
+            <!-- ################################################################################################ -->
+            <!-- ################################################################################################ -->
+            <div class="wrapper row4 bgded overlay" style="background-image:url('../../Content/images/footer.jpg');">
+                <footer id="footer" class="hoc clear">
+                    <!-- ################################################################################################ -->
+                    <h3 class="heading">StarLight Tickets</h3>
+                    <nav>
+                        <ul class="nospace inline pushright uppercase">
+                            <li><i class="fa fa-lg fa-home">@Html.ActionLink("Home", "Index", "Home", null, null)</i></li>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Terms</a></li>
+                            <li><a href="#">Privacy</a></li>
+                        </ul>
+                    </nav>
+                    <ul class="faico clear">
+                        <li><a class="faicon-facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a class="faicon-twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a class="faicon-dribble" href="#"><i class="fa fa-dribbble"></i></a></li>
+                        <li><a class="faicon-linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a class="faicon-google-plus" href="#"><i class="fa fa-google-plus"></i></a></li>
+                        <li><a class="faicon-vk" href="#"><i class="fa fa-vk"></i></a></li>
+                        
+                    </ul>
+                   
+                    <!-- ################################################################################################ -->
+                </footer>
+            </div>
+            <!-- ################################################################################################ -->
+            <!-- ################################################################################################ -->
+            <!-- ################################################################################################ -->
+            <div class="wrapper row5">
+                <div id="copyright" class="hoc clear">
+                    <!-- ################################################################################################ -->
+                    <p class="fl_left">Copyright &copy; 2019 - All Rights Reserved - <a href="#">StarLight Ticket</a></p>
+                    
+                    <!-- ################################################################################################ -->
+                </div>
+            </div>
+            <!-- ################################################################################################ -->
+            <!-- ################################################################################################ -->
+            <!-- ################################################################################################ -->
+            <a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
+            <!-- JAVASCRIPTS -->
+            <script src="~/Content/layout/scripts/jquery.min.js"></script>
+            <script src="~/Content/layout/scripts/jquery.backtotop.js"></script>
+            <script src="~/Content/layout/scripts/jquery.mobilemenu.js"></script>
+            <script src="~/Content/layout/scripts/jquery.flexslider-min.js"></script>
+        </body>
+    </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*</div>*@
